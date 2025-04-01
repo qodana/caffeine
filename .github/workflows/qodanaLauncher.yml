@@ -8,6 +8,10 @@ on:
         type: number
         default: 10
         required: false
+      branch:
+        description: 'Repository branch'
+        type: string
+        required: true
 
 jobs:
   trigger:
@@ -17,7 +21,8 @@ jobs:
         env:
           RUNS: ${{ inputs.runs }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: ${{ inputs.branch }}
         run: |
           for (( i=0; i<RUNS; i++ )); do
-            gh workflow run --repo "$GITHUB_REPOSITORY" Qodana --ref 251-investigation
+            gh workflow run --repo "$GITHUB_REPOSITORY" Qodana --ref BRANCH
           done
