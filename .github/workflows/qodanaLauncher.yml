@@ -24,5 +24,5 @@ jobs:
           BRANCH: ${{ inputs.branch }}
         run: |
           for (( i=0; i<RUNS; i++ )); do
-            gh workflow run --repo "$GITHUB_REPOSITORY" Qodana --ref BRANCH
+            gh workflow run --repo "$GITHUB_REPOSITORY" Qodana --ref "$BRANCH"
           done
